@@ -44,6 +44,7 @@ class RouterTest extends TestCase
   {
     $this->router->register('/testController', [homeController::class , "index"]);
     $request = new Request("/testController");
+    // echo $this->router->resolve($request->uri);
     $this->assertNotNull($this->router->resolve($request->uri));
   }
 
@@ -55,23 +56,29 @@ class RouterTest extends TestCase
     });
     $request = new Request("/test/user/123/test1/test-model/321");
     $resolve = $this->router->resolve($request->uri);
+
+
     $this->assertNotNull($resolve, "The uri params test has encountered an error");
   }
-  /** @covers */
-  // public function testCanGetParamsToRouteControllerWithParams()
-  // {
-  //   class TestController
-  //   {
-  //     public static function show($userId, $testModelId)
-  //     {
-  //       return "Hi i'm user Id: " . $userId . "and here is my testModelId:" . $testModelId;
-  //     }
-  //   }
 
-  //   $request = new Request("/test/user/123/test1/test-model/321");
-  //   $controller = new TestController;
-  //   $this->router->register("/test/user/{userId}/test1/test-model/{testModelId}", [$controller, "show"]);
-  //   $resolve = $this->router->resolve($request->uri);
-  //   $this->assertNotNull($resolve, "The uri params test has encountered an error");
-  // }
+
+
+  
+/** @covers */  public function testCanGetParamsToRouteControllerWithParams()
+  {
+
+
+    $request = new Request("/test/user/123/test1/test-model/321");
+    $controller = new TestController;
+    $this->router->register("/test/user/{userId}/test1/test-model/{testModelId}", [$controller, "show"]);
+    $resolve = $this->router->resolve($request->uri);
+    $this->assertNotNull($resolve, "The uri params test has encountered an error");
+  }
+}
+class TestController
+{
+  public static function show($userId, $testModelId)
+  {
+    return "Hi i'm user Id: " . $userId . "and here is my testModelId:" . $testModelId;
+  }
 }

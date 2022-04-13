@@ -2,6 +2,8 @@
 
 namespace Source\router;
 
+use Exception;
+use Exception\RouterExecuteActionErrorException;
 use Exception\RouterRouteNotFoundException;
 
 class Router
@@ -11,21 +13,21 @@ class Router
   public $routes = [];
 
   /**
-   * Register a route
+   * Register a route with a processed uri
    * @param string $uri
    * @param array|callable $action
    * @return void
    */
-  public function register($uri, $action, $args = []): void
+  public function register($uri, $action): void
   {
-    if (is_callable($action)) {
-      $this->routes[$uri] = $action;
+    $uri = explode('/', $uri);
+    foreach ($uri as &$segment) {
+      if (str_contains($segment, '{')) {
+        $segment = '%d';
+      }
     }
-    if (is_array($action)) {
-      $class = new $action[0];
-      $action = call_user_func_array([$class, $action[1]], $args);
-      $this->routes[$uri] = $action;
-    }
+    $uri = implode('/', $uri);
+    $this->routes[$uri] = $action;
   }
 
   /**
@@ -33,13 +35,79 @@ class Router
    * @param string $uri
    * @return mixed
    */
-  public function resolve($uri): mixed
+  public function resolve(string $uri): mixed
+  {
+    // Take the params for the currrent request uri
+    $params = $this->getRouteParameters($uri);
+
+    // Resolve the current request uri
+    $path = $this->resolvepath($uri);
+
+    // get the action of the route
+    $action = $this->routes[$path];
+
+    // execute action
+    return $this->executeAction($action, $params);
+  }
+
+  // /**
+  //  * Register action into routes
+  //  * @param string $uri
+  //  */
+  // public function 
+
+  /**
+   * Resolve path of the current uri
+   * @param string $uri
+   * @return string $uri
+   */
+  public function resolvePath(string $uri): string
+  {
+    $uri = explode('/', $uri);
+    foreach ($uri as &$segment) {
+      if (preg_match("/^(0|[1-9][0-9]*)$/", $segment)) {
+        $segment = '%d';
+      }
+    }
+    $uri = implode('/', $uri);
+    return $uri;
+  }
+  /**
+   * Get the parameters of the current route URI
+   * @param string $uri
+   * @return array
+   */
+  public function getRouteParameters($uri): array
+  {
+    $parameters = [];
+    $route = explode('/', $uri);
+    foreach ($route as $segment) {
+      if (preg_match("/^(0|[1-9][0-9]*)$/", $segment)) {
+        $parameters[] = $segment;
+      }
+    }
+    return $parameters;
+  }
+
+  /**
+   * Execute action stocked in $this->routes
+   * @param string $uri
+   * @param array|callable $action
+   * @param array $params
+   */
+  public function executeAction(array |callable $action, array $params = []): mixed
   {
     try {
-      return $this->routes[$uri];
+      if (is_callable($action)) {
+        return call_user_func($action, ...$params);
+      }
+      if (is_array($action)) {
+        $class = new $action[0];
+        return call_user_func_array([$class, $action[1]], ...$params);
+      }
     }
-    catch (RouterRouteNotFoundException $e) {
-      echo $e->getMessage;
+    catch (RouterExecuteActionErrorException $e) {
+      echo $e->getMessage();
     }
   }
 }
