@@ -7,6 +7,7 @@ use Source\router\Router;
 use Controller\homeController;
 use Source\Helper;
 use Source\Request;
+use Tests\entities\TestController;
 
 class RouterTest extends TestCase
 {
@@ -18,13 +19,13 @@ class RouterTest extends TestCase
   }
 
   /** @covers */
-  public function testCheckIfRouterHasBeenCorrectlyCreated()
+  public function testCheckIfRouterHasBeenCorrectlyCreated(): void
   {
-    $this->assertIsObject($this->router, "Router class not created correctly");
+    $this->assertInstanceOf(Router::class , $this->router, "Router class not created correctly");
   }
 
   /** @covers */
-  public function testCheckIfRouteActionHasBeenRegistered()
+  public function testCheckIfRouteActionHasBeenRegistered(): void
   {
     $this->router->register('/testing', function () {
       return "testPassed";
@@ -33,52 +34,38 @@ class RouterTest extends TestCase
   }
 
   /** @covers */
-  public function testCheckIfRouteControllerHasBeenRegistered()
+  public function testCheckIfRouteControllerHasBeenRegistered(): void
   {
     $this->router->register('/testController', [homeController::class , "index"]);
     $this->assertArrayHasKey('/testController', $this->router->routes, "Dont find key");
   }
 
   /** @covers */
-  public function testCheckIfRouterResolveRoute()
+  public function testCheckIfRouterResolveRoute(): void
   {
     $this->router->register('/testController', [homeController::class , "index"]);
     $request = new Request("/testController");
-    // echo $this->router->resolve($request->uri);
     $this->assertNotNull($this->router->resolve($request->uri));
   }
 
   /** @covers */
-  public function testCanGetParamsToRouteActionWithParams()
+  public function testCanGetParamsToRouteActionWithParams(): void
   {
     $this->router->register("/test/user/{userId}/test1/test-model/{testModelId}", function ($userId, $testModelId) {
       return "Hi i'm user Id: " . $userId . "and here is my testModelId:" . $testModelId;
     });
     $request = new Request("/test/user/123/test1/test-model/321");
     $resolve = $this->router->resolve($request->uri);
-
-
     $this->assertNotNull($resolve, "The uri params test has encountered an error");
   }
 
-
-
-  
-/** @covers */  public function testCanGetParamsToRouteControllerWithParams()
+  /** @covers */
+  public function testCanGetParamsToRouteControllerWithParams(): void
   {
-
-
     $request = new Request("/test/user/123/test1/test-model/321");
     $controller = new TestController;
     $this->router->register("/test/user/{userId}/test1/test-model/{testModelId}", [$controller, "show"]);
     $resolve = $this->router->resolve($request->uri);
     $this->assertNotNull($resolve, "The uri params test has encountered an error");
-  }
-}
-class TestController
-{
-  public static function show($userId, $testModelId)
-  {
-    return "Hi i'm user Id: " . $userId . "and here is my testModelId:" . $testModelId;
   }
 }

@@ -1,0 +1,22 @@
+{
+    "timeout": 30,
+    "source": {
+        "directories": [
+            "src"
+        ],
+        "excludes": [
+            "resources"
+        ]
+    },
+    "logs": {
+        "text": "infection.log",
+        "badge": {
+            "branch": "master"
+        }
+    },
+    "mutators": {
+        "@default": true
+    },
+    "minMsi": 95,
+    "minCoveredMsi": 95
+}

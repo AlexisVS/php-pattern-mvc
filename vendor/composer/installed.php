@@ -1,24 +1,24 @@
 <?php return array (
   'root' => 
   array (
-    'pretty_version' => '1.0.0+no-version-set',
-    'version' => '1.0.0.0',
+    'pretty_version' => 'dev-main',
+    'version' => 'dev-main',
     'aliases' => 
     array (
     ),
-    'reference' => NULL,
+    'reference' => '28fe1e69c8c508d99f53b152476a26e3c94cb111',
     'name' => 'alexi/php-pattern-mvc',
   ),
   'versions' => 
   array (
     'alexi/php-pattern-mvc' => 
     array (
-      'pretty_version' => '1.0.0+no-version-set',
-      'version' => '1.0.0.0',
+      'pretty_version' => 'dev-main',
+      'version' => 'dev-main',
       'aliases' => 
       array (
       ),
-      'reference' => NULL,
+      'reference' => '28fe1e69c8c508d99f53b152476a26e3c94cb111',
     ),
     'doctrine/instantiator' => 
     array (
@@ -29,6 +29,15 @@
       ),
       'reference' => '10dcfce151b967d20fde1b34ae6640712c3891bc',
     ),
+    'league/pipeline' => 
+    array (
+      'pretty_version' => '1.0.0',
+      'version' => '1.0.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'aa14b0e3133121f8be39e9a3b6ddd011fc5bb9a8',
+    ),
     'myclabs/deep-copy' => 
     array (
       'pretty_version' => '1.11.0',
@@ -37,6 +46,15 @@
       array (
       ),
       'reference' => '14daed4296fae74d9e3201d2c4925d1acb7aa614',
+    ),
+    'nette/utils' => 
+    array (
+      'pretty_version' => 'v3.2.7',
+      'version' => '3.2.7.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '0af4e3de4df9f1543534beab255ccf459e7a2c99',
     ),
     'nikic/php-parser' => 
     array (
@@ -154,6 +172,31 @@
       array (
       ),
       'reference' => '12bc8879fb65aef2138b26fc633cb1e3620cffba',
+    ),
+    'phuml/phuml' => 
+    array (
+      'pretty_version' => '5.2.1',
+      'version' => '5.2.1.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '68212e97979bc463ef7614af37d6b873f76dbdb3',
+    ),
+    'psr/container' => 
+    array (
+      'pretty_version' => '2.0.2',
+      'version' => '2.0.2.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'c71ecc56dfe541dbd90c5360474fbc405f8d5963',
+    ),
+    'psr/log-implementation' => 
+    array (
+      'provided' => 
+      array (
+        0 => '1.0|2.0',
+      ),
     ),
     'sebastian/cli-parser' => 
     array (
@@ -299,6 +342,42 @@
       ),
       'reference' => 'c6c1022351a901512170118436c764e473f6de8c',
     ),
+    'symfony/console' => 
+    array (
+      'pretty_version' => 'v5.4.7',
+      'version' => '5.4.7.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '900275254f0a1a2afff1ab0e11abd5587a10e1d6',
+    ),
+    'symfony/deprecation-contracts' => 
+    array (
+      'pretty_version' => 'v3.0.1',
+      'version' => '3.0.1.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '26954b3d62a6c5fd0ea8a2a00c0353a14978d05c',
+    ),
+    'symfony/filesystem' => 
+    array (
+      'pretty_version' => 'v6.0.7',
+      'version' => '6.0.7.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '6c9e4c41f2c51dfde3db298594ed9cba55dbf5ff',
+    ),
+    'symfony/finder' => 
+    array (
+      'pretty_version' => 'v5.4.3',
+      'version' => '5.4.3.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '231313534dded84c7ecaa79d14bc5da4ccb69b7d',
+    ),
     'symfony/polyfill-ctype' => 
     array (
       'pretty_version' => 'v1.25.0',
@@ -308,6 +387,87 @@
       ),
       'reference' => '30885182c981ab175d4d034db0f6f469898070ab',
     ),
+    'symfony/polyfill-intl-grapheme' => 
+    array (
+      'pretty_version' => 'v1.25.0',
+      'version' => '1.25.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '81b86b50cf841a64252b439e738e97f4a34e2783',
+    ),
+    'symfony/polyfill-intl-normalizer' => 
+    array (
+      'pretty_version' => 'v1.25.0',
+      'version' => '1.25.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '8590a5f561694770bdcd3f9b5c69dde6945028e8',
+    ),
+    'symfony/polyfill-mbstring' => 
+    array (
+      'pretty_version' => 'v1.25.0',
+      'version' => '1.25.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '0abb51d2f102e00a4eefcf46ba7fec406d245825',
+    ),
+    'symfony/polyfill-php73' => 
+    array (
+      'pretty_version' => 'v1.25.0',
+      'version' => '1.25.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'cc5db0e22b3cb4111010e48785a97f670b350ca5',
+    ),
+    'symfony/polyfill-php80' => 
+    array (
+      'pretty_version' => 'v1.25.0',
+      'version' => '1.25.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '4407588e0d3f1f52efb65fbe92babe41f37fe50c',
+    ),
+    'symfony/process' => 
+    array (
+      'pretty_version' => 'v5.4.7',
+      'version' => '5.4.7.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '38a44b2517b470a436e1c944bf9b9ba3961137fb',
+    ),
+    'symfony/service-contracts' => 
+    array (
+      'pretty_version' => 'v3.0.1',
+      'version' => '3.0.1.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'e517458f278c2131ca9f262f8fbaf01410f2c65c',
+    ),
+    'symfony/string' => 
+    array (
+      'pretty_version' => 'v6.0.3',
+      'version' => '6.0.3.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '522144f0c4c004c80d56fa47e40e17028e2eefc2',
+    ),
+    'symplify/smart-file-system' => 
+    array (
+      'pretty_version' => '9.4.70',
+      'version' => '9.4.70.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'bc9caf6258dabedc032aad4041bc58fd322aa660',
+    ),
     'theseer/tokenizer' => 
     array (
       'pretty_version' => '1.2.1',
@@ -316,6 +476,15 @@
       array (
       ),
       'reference' => '34a41e998c2183e22995f158c581e7b5e755ab9e',
+    ),
+    'twig/twig' => 
+    array (
+      'pretty_version' => 'v3.3.10',
+      'version' => '3.3.10.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '8442df056c51b706793adf80a9fd363406dd3674',
     ),
     'webmozart/assert' => 
     array (
